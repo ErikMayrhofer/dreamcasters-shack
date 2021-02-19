@@ -3,3 +3,4 @@
 yarn-error.log
 /__sapper__/
 /node_modules/
+.vercel
