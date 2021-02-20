@@ -2,8 +2,15 @@
   import { client } from "../../lib/api";
 
   export async function preload(page, session) {
-    const artworks = await client.items("artwork").read();
-    return { artworks: artworks.data };
+    try {
+      console.log("Prefetching Artworks");
+      const artworks = await client.items("artworks").read();
+      return { artworks: artworks.data };
+    } catch (e) {
+      console.log("Fetching of Artworks failed: ", e);
+    }
+    console.log("Wut?");
+    this.error(500, "Prefetch failed");
   }
 </script>
 
@@ -11,13 +18,13 @@
   import type { Artwork } from "../../lib/model";
 
   export let artworks: Artwork[];
-  console.log(artworks);
+  console.log("Artworks: ", artworks);
 </script>
 
 <ul>
   {#each artworks as artwork}
     <li>
-      <a href="/store/{artwork.url}" sapper:prefetch>
+      <a href="/store/{artwork.id}" sapper:prefetch>
         <span>
           {artwork.name}
         </span>

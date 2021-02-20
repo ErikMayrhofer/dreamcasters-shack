@@ -1,3 +1,3 @@
 import DirectusSDK from "@directus/sdk-js";
 
-export const client = new DirectusSDK("http://localhost:8055");
+export const client = new DirectusSDK("https://api.dreamcaster.obyoxion.at");
