@@ -122,7 +122,7 @@
     height: 6px;
     width: 100%;
     background-color: var(--color-footer);
-    box-shadow: 0 0 2vw 2vw var(--color-footer);
+    box-shadow: 0 0 2vw 3vw var(--color-footer);
   }
   .window.anchor {
     top: 40vw;

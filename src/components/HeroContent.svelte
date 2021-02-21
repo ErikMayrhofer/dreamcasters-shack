@@ -27,6 +27,7 @@
     font-family: dreams, sans-serif;
     font-weight: normal;
     font-size: 3em;
+    font-style: normal;
     text-shadow: 1px 1px 0 black, 2px 2px 0 black, 3px 3px 0 black;
   }
   p {
