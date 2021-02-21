@@ -14,6 +14,14 @@
     lazyImage(background_large, (it) => (background = it));
     lazyImage(hero_large, (it) => (hero = it));
   });
+
+  function scroll() {
+    let sel = document.querySelector("#windows");
+    sel.scrollIntoView({
+      behavior: "smooth",
+    });
+    sel.focus();
+  }
 </script>
 
 <svelte:head>
@@ -23,6 +31,11 @@
 <!--<Login />-->
 <div class="hero" style={`background-image: url("${hero}")`}>
   <HeroContent />
+  <button class="scrolldown" on:click={() => scroll()}>
+    <svg viewBox="0 0 100 100">
+      <polyline points="10,10 50,60 90,10" />
+    </svg>
+  </button>
 </div>
 <div class="content">
   <div class="window anchor" id="windows" />
@@ -44,6 +57,49 @@
 
     width: 100%;
     height: 100vh;
+    position: relative;
+  }
+  button.scrolldown {
+    all: unset;
+    position: absolute;
+    bottom: calc(3vw + 70px);
+    position: relative;
+    width: 70px;
+    cursor: pointer;
+    z-index: 20;
+    margin: 0 calc(50% - 45px);
+    animation: scrolldownbutton 3s ease-out 0s infinite;
+  }
+  @keyframes scrolldownbutton {
+    0% {
+      transform: translateY(0%) scaleY(1);
+    }
+    20% {
+      transform: translateY(20%) scaleY(1.1);
+    }
+    25% {
+      transform: translateY(15%) scaleY(1.05);
+    }
+    30% {
+      transform: translateY(20%) scaleY(1.1);
+    }
+    35% {
+      transform: translateY(20%) scaleY(1.1);
+    }
+    50% {
+      transform: translateY(0%) scaleY(1);
+    }
+  }
+  button.scrolldown polyline {
+    stroke: white;
+    stroke-width: 5px;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: 0.2s stroke-width;
+  }
+  button.scrolldown:hover polyline {
+    stroke-width: 7px;
   }
   div.content {
     margin-top: -9vw;
@@ -55,6 +111,7 @@
     width: 100vw;
     position: relative;
     margin-bottom: -4px; /*Why? Without this there is an ever so small hole at the bottom*/
+    pointer-events: none;
   }
   .window {
     position: absolute;

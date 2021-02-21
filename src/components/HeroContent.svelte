@@ -1,18 +1,9 @@
 <script lang="ts">
-  function scroll() {
-    let sel = document.querySelector("#windows");
-    sel.scrollIntoView({
-      behavior: "smooth",
-    });
-    sel.focus();
-  }
 </script>
 
 <div class="hero-content">
   <h1>Dreamcasters<br />Shack</h1>
   <p>And this is the place, where our beautiful catch-phrase will reside.</p>
-
-  <button on:click={() => scroll()}>V</button>
 </div>
 
 <style>
@@ -34,9 +25,6 @@
     font-weight: normal;
     font-size: 3em;
     text-shadow: 1px 1px 0 black, 2px 2px 0 black, 3px 3px 0 black;
-  }
-  button {
-    all: unset;
   }
 
   @media only screen and (min-width: 1000px) {
