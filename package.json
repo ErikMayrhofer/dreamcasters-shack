@@ -1,9 +1,8 @@
 {
   "description": "TODO",
   "version": "0.0.1",
-  "private": "true",
   "scripts": {
-    "app:dev": "sapper dev",
+    "dev": "sapper dev",
     "build": "sapper build --legacy",
     "export": "sapper export --legacy",
     "start": "node __sapper__/build",
@@ -13,9 +12,12 @@
     "@directus/sdk-js": "^9.0.0-rc.37",
     "compression": "^1.7.1",
     "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "helmet": "^4.4.1",
     "jsonwebtoken": "^8.5.1",
     "polka": "next",
-    "sirv": "^1.0.0"
+    "sirv": "^1.0.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

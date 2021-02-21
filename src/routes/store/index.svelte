@@ -5,6 +5,7 @@
     try {
       console.log("Prefetching Artworks");
       const artworks = await client.items("artworks").read();
+      console.log("Feching Succeeded");
       return { artworks: artworks.data };
     } catch (e) {
       console.log("Fetching of Artworks failed: ", e);
