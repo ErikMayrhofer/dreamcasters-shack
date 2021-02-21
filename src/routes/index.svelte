@@ -1,36 +1,43 @@
 <script>
-  import successkid from "images/successkid.jpg";
-  import Login from "../components/Login.svelte";
+  import background_large from "images/background/background_complete.webp";
+  import background_preview from "images/background_complete_640_bad.webp";
+  import hero_preview from "images/hero_640_bad.webp";
+  import hero_large from "images/hero.webp";
+  import { onMount } from "svelte";
+  import { lazyImage } from "../lib/image";
+
+  let hero = hero_preview;
+  let background = background_preview;
+
+  onMount(() => {
+    lazyImage(background_large, (it) => (background = it));
+    lazyImage(hero_large, (it) => (hero = it));
+  });
 </script>
 
 <svelte:head>
   <title>Sapper project template</title>
 </svelte:head>
 
-<h1>Work in Progress..</h1>
-<p>This site is still heavily under construction.</p>
-
 <!--<Login />-->
+<div class="parallaxhost">
+  <div class="hero" style={`background-image: url("${hero}")`} />
+  <img class="background" src={background} alt="background" />
+</div>
+
 <style>
-  h1,
-  p {
-    text-align: center;
-    margin: 0 auto;
-  }
+  div.hero {
+    object-fit: cover;
+    object-position: 50% 50%;
 
-  h1 {
-    font-size: 2.8em;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin: 0 0 0.5em 0;
-  }
-  p {
-    margin: 1em auto;
-  }
+    background-size: cover;
+    background-attachment: fixed;
 
-  @media (min-width: 480px) {
-    h1 {
-      font-size: 4em;
-    }
+    width: 100vw;
+    height: 100vh;
+  }
+  img.background {
+    width: 100vw;
+    margin-top: -100px;
   }
 </style>

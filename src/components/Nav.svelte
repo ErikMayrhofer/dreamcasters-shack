@@ -24,6 +24,8 @@
         href="store">store</a
       >
     </li>
+
+    <span>{segment}</span>
   </ul>
 </nav>
 
