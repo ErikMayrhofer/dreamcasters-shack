@@ -1,5 +1,6 @@
 <script lang="ts">
   import Nav from "../components/Nav.svelte";
+  import Footer from "../components/Footer.svelte";
 
   export let segment: string;
 </script>
@@ -11,6 +12,7 @@
 <main class:full={!segment}>
   <slot />
 </main>
+<Footer />
 
 <style>
   main {
@@ -22,7 +24,8 @@
     box-sizing: border-box;
   }
   main.full {
-    width: 100vw;
+    width: 100%;
+    max-width: 100vw;
     padding: 0;
     margin: 0;
   }
