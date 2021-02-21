@@ -3,6 +3,7 @@
   import background_preview from "images/background_complete_640_bad.webp";
   import hero_preview from "images/hero_640_bad.webp";
   import hero_large from "images/hero.webp";
+  import HeroContent from "../components/HeroContent.svelte";
   import { onMount } from "svelte";
   import { lazyImage } from "../lib/image";
 
@@ -16,12 +17,15 @@
 </script>
 
 <svelte:head>
-  <title>Sapper project template</title>
+  <title>Dreamcasters Shack</title>
 </svelte:head>
 
 <!--<Login />-->
-<div class="hero" style={`background-image: url("${hero}")`} />
+<div class="hero" style={`background-image: url("${hero}")`}>
+  <HeroContent />
+</div>
 <div class="content">
+  <div class="window anchor" id="windows" />
   <div class="window a" />
   <div class="window b" />
   <div class="window c" />
@@ -55,12 +59,16 @@
   .window {
     position: absolute;
   }
+
   .bottom-shadow {
     position: relative;
     height: 6px;
     width: 100%;
-    background-color: black;
-    box-shadow: 0 0 2vw 2vw black;
+    background-color: var(--color-footer);
+    box-shadow: 0 0 2vw 2vw var(--color-footer);
+  }
+  .window.anchor {
+    top: 40vw;
   }
   .window.a {
     width: 50vw;
