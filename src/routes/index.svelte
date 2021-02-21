@@ -26,6 +26,7 @@
   <div class="window b" />
   <div class="window c" />
   <img class="background" src={background} alt="background" />
+  <div class="bottom-shadow" />
 </div>
 
 <style>
@@ -49,9 +50,17 @@
   img.background {
     width: 100vw;
     position: relative;
+    margin-bottom: -4px; /*Why? Without this there is an ever so small hole at the bottom*/
   }
   .window {
     position: absolute;
+  }
+  .bottom-shadow {
+    position: relative;
+    height: 6px;
+    width: 100%;
+    background-color: black;
+    box-shadow: 0 0 2vw 2vw black;
   }
   .window.a {
     width: 50vw;
