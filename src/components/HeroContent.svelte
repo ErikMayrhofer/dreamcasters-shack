@@ -3,6 +3,9 @@
 
 <div class="hero-content">
   <h1>Dreamcasters<br />Shack</h1>
+  <p style="font-weight: bold;">
+    This site is still heavily under development.
+  </p>
   <p>And this is the place, where our beautiful catch-phrase will reside.</p>
 </div>
 
@@ -25,6 +28,13 @@
     font-weight: normal;
     font-size: 3em;
     text-shadow: 1px 1px 0 black, 2px 2px 0 black, 3px 3px 0 black;
+  }
+  p {
+    font-family: var(--font-accent);
+    font-style: italic;
+    font-size: 2em;
+    max-width: 20em;
+    text-shadow: 0 0 5px black, 0 0 4px black;
   }
 
   @media only screen and (min-width: 1000px) {

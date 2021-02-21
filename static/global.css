@@ -8,6 +8,15 @@ body {
   font-family: dreams;
   src: url(/BetterDreams.woff);
 }
+@font-face {
+  font-family: playfair;
+  src: url(/playfair/PlayfairDisplay-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: playfair;
+  font-style: italic;
+  src: url(/playfair/PlayfairDisplay-Italic-VariableFont_wght.ttf);
+}
 
 #sapper {
   height: 100vh;
@@ -22,6 +31,13 @@ body {
   --color-primary: #ffcb3b;
   --color-secondary: #0b4050;
   --color-warn: #fe4a49;
+  --font-accent: playfair;
+  /* --font-accent: "Akaya Telivigala", cursive; */
+  /* --font-accent: "Caveat", cursive; */
+  /* --font-accent: "Indie Flower", cursive; */
+  /* --font-accent: "Playfair Display"; */
+  /* --font-accent: "Satisfy", cursive; */
+  /* --font-accent: "Shadows Into Light", cursive; */
 }
 
 #sapper footer {
