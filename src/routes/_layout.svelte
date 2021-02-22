@@ -5,9 +5,7 @@
   export let segment: string;
 </script>
 
-<!--
 <Nav {segment} />
--->
 
 <main class:full={!segment}>
   <slot />
