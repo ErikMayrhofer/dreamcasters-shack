@@ -70,6 +70,11 @@
     margin: 0 calc(50% - 45px);
     animation: scrolldownbutton 3s ease-out 0s infinite;
   }
+  @media only screen and (max-width: 1000px) {
+    button.scrolldown {
+      bottom: calc(10vw + 70px);
+    }
+  }
   @keyframes scrolldownbutton {
     0% {
       transform: translateY(0%) scaleY(1);
