@@ -5,22 +5,35 @@
   export let segment: string;
 </script>
 
-<Nav {segment} />
+{#if !!segment}
+  <Nav {segment} />
+{/if}
 
 <main class:full={!segment}>
   <slot />
 </main>
+
+<!-- <div>
+  {#if !!segment}
+    <div class="footer-border" />
+  {/if} -->
 <Footer />
 
+<!-- </div> -->
 <style>
   main {
     position: relative;
-    max-width: 56em;
-    background-color: white;
+    max-width: var(--content-width);
     padding: 2em;
     margin: 0 auto;
     box-sizing: border-box;
   }
+
+  /* .footer-border {
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-secondary);
+  } */
   main.full {
     width: 100%;
     max-width: 100vw;

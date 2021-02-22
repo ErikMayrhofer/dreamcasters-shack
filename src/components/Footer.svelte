@@ -33,7 +33,7 @@
 <style>
   footer {
     position: relative;
-    padding: 2em 0;
+    padding: 1em 0;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;

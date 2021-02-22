@@ -29,13 +29,16 @@
 </svelte:head>
 
 <!--<Login />-->
-<div class="hero" style={`background-image: url("${hero}")`}>
-  <HeroContent />
-  <button class="scrolldown" on:click={() => scroll()}>
-    <svg viewBox="0 0 100 100">
-      <polyline points="10,10 50,60 90,10" />
-    </svg>
-  </button>
+<div class="hero">
+  <img src={hero} alt="hero" />
+  <div class="hero-content-holder">
+    <HeroContent />
+    <button class="scrolldown" on:click={() => scroll()}>
+      <svg viewBox="0 0 100 100">
+        <polyline points="10,10 50,60 90,10" />
+      </svg>
+    </button>
+  </div>
 </div>
 <div class="content">
   <div class="window anchor" id="windows" />
@@ -47,10 +50,19 @@
 </div>
 
 <style>
-  div.hero {
+  .hero > img {
     object-fit: cover;
     object-position: 50% 50%;
-
+  }
+  .hero > img,
+  .hero > .hero-content-holder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  div.hero {
     background-size: cover;
     background-attachment: fixed;
     background-position: 50% 50%;
@@ -58,6 +70,7 @@
     width: 100%;
     height: 100vh;
     position: relative;
+    background-color: var(--color-black);
   }
   button.scrolldown {
     all: unset;

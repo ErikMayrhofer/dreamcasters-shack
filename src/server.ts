@@ -45,13 +45,7 @@ export default polka()
     sirv("static", { dev }),
     cookieParser(),
 
-    sapper.middleware({
-      session: (req, res) => {
-        return {
-          user: req.user,
-        };
-      },
-    })
+    sapper.middleware({})
   )
   .listen(PORT, (err) => {
     if (err) console.log("error", err);

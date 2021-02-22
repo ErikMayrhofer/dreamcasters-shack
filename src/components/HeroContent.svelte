@@ -6,10 +6,14 @@
   <p style="font-weight: bold;">
     This site is still heavily under development.
   </p>
+  <a class="button shop" href="/store">Shop</a>
   <p>And this is the place, where our beautiful catch-phrase will reside.</p>
 </div>
 
 <style>
+  .button.shop {
+    font-size: 1.4em;
+  }
   .hero-content {
     width: 100%;
     height: 100%;

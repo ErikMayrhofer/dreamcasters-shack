@@ -5,52 +5,78 @@
 <nav>
   <ul>
     <li>
-      <a aria-current={segment === undefined ? "page" : undefined} href="."
-        >home</a
-      >
-    </li>
-    <li>
-      <a aria-current={segment === "about" ? "page" : undefined} href="about"
-        >about</a
-      >
+      <a aria-current={segment === undefined ? "page" : undefined} href=".">
+        Dreamcasters Shack
+      </a>
     </li>
 
-    <!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
-		     the blog data when we hover over the link or tap it on a touchscreen -->
+    <li class="shop">
+      <ul>
+        <li>
+          <a
+            rel="prefetch"
+            aria-current={segment === "dolls" ? "page" : undefined}
+            href="store/dolls"
+          >
+            Dolls
+          </a>
+        </li>
+        <li>
+          <a
+            rel="prefetch"
+            aria-current={segment === "dice" ? "page" : undefined}
+            href="store/dice"
+          >
+            Dice
+          </a>
+        </li>
+        <li>
+          <a
+            rel="prefetch"
+            aria-current={segment === "decoration" ? "page" : undefined}
+            href="store/decoration"
+          >
+            Deco
+          </a>
+        </li>
+      </ul>
+    </li>
+
     <li>
       <a
         rel="prefetch"
-        aria-current={segment === "store" ? "page" : undefined}
-        href="store">store</a
+        aria-current={segment === "about" ? "page" : undefined}
+        href="about"
       >
+        About us
+      </a>
     </li>
-
-    <span>{segment}</span>
   </ul>
 </nav>
 
 <style>
   nav {
-    border-bottom: 1px solid rgba(255, 62, 0, 0.1);
-    font-weight: 300;
     padding: 0 1em;
+    display: grid;
   }
 
-  ul {
+  nav > ul {
     margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
     padding: 0;
-  }
-
-  /* clearfix */
-  ul::after {
-    content: "";
-    display: block;
-    clear: both;
   }
 
   li {
     display: block;
     float: left;
+    justify-self: center;
+  }
+  li:first-of-type {
+    justify-self: start;
+  }
+  li:last-of-type {
+    justify-self: end;
   }
 
   [aria-current] {
@@ -70,7 +96,23 @@
 
   a {
     text-decoration: none;
-    padding: 1em 0.5em;
+    padding: 0.5em 1em;
     display: block;
+    color: white;
+    font-size: 2em;
+    font-family: var(--font-accent);
+    font-weight: bold;
+    font-style: italic;
+    /* font-family: sans-serif; */
+    /* font-family: var(--font-primary); */
+    /* font-style: italic; */
+  }
+
+  a::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-primary);
   }
 </style>
