@@ -27,6 +27,7 @@
     padding: 2em;
     margin: 0 auto;
     box-sizing: border-box;
+    min-height: 100vh;
   }
 
   /* .footer-border {
@@ -39,5 +40,6 @@
     max-width: 100vw;
     padding: 0;
     margin: 0;
+    min-height: unset;
   }
 </style>

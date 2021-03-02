@@ -38,6 +38,9 @@
     justify-content: space-around;
     flex-wrap: wrap;
   }
+  section {
+    padding: 1em;
+  }
   ul {
     list-style: none;
     padding: 0;
