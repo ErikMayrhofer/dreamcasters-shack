@@ -50,23 +50,23 @@
     list-style: none;
     padding: 0;
     display: grid;
-    grid-template-columns: auto auto auto;
-    column-gap: 2em;
-    row-gap: 2em;
+    grid-template-columns: auto auto auto auto;
+    column-gap: 3em;
+    row-gap: 3em;
   }
 
   img {
-    border-radius: 1em;
     width: calc(100% + 2px);
     margin: -1px;
   }
   li {
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 1em 1em 5px 5px;
     background-color: rgba(255, 255, 255, 0.1);
     box-shadow: none;
     transform: scale(1);
     transition: 300ms box-shadow, 300ms transform;
+    overflow: hidden;
+    width: 17em;
   }
 
   li:hover {

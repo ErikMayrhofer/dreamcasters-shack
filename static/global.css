@@ -28,7 +28,7 @@
   --color-warn: #fe4a49;
   --font-accent: playfair;
   --font-primary: dreams;
-  --content-width: 56em;
+  --content-width: 80em;
 
   color: white;
   background-color: var(--color-black);
