@@ -25,18 +25,21 @@
 <ul>
   {#each artworks as artwork}
     <li>
-      {#if !!artwork.title_image}
-        <img
-          src="https://api.dreamcaster.obyoxion.at/assets/{artwork.title_image}?key=thumbnail"
-        />
-      {/if}
       <a href="/store/{artwork.id}" sapper:prefetch>
-        <span>
-          {artwork.name}
-        </span>
-        <span>
-          {artwork.price}
-        </span>
+        {#if !!artwork.title_image}
+          <img
+            alt="Preview for {artwork.name}"
+            src="https://api.dreamcaster.obyoxion.at/assets/{artwork.title_image}?key=thumbnail"
+          />
+        {/if}
+        <div>
+          <h1>
+            {artwork.name}
+          </h1>
+          <span>
+            {artwork.price}
+          </span>
+        </div>
       </a>
     </li>
   {/each}
@@ -47,12 +50,42 @@
     list-style: none;
     padding: 0;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: auto auto auto;
     column-gap: 2em;
     row-gap: 2em;
   }
 
-  li > img {
-    width: 100%;
+  img {
+    border-radius: 1em;
+    width: calc(100% + 2px);
+    margin: -1px;
+  }
+  li {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1em 1em 5px 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    transform: scale(1);
+    transition: 300ms box-shadow, 300ms transform;
+  }
+
+  li:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 10px black, 5px 5px 20px black;
+  }
+
+  div {
+    padding: 1em;
+    padding-top: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  h1 {
+    font-size: 2em;
+    padding: 0;
+    margin-top: 0;
   }
 </style>
