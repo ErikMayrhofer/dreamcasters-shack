@@ -25,6 +25,11 @@
 <ul>
   {#each artworks as artwork}
     <li>
+      {#if !!artwork.title_image}
+        <img
+          src="https://api.dreamcaster.obyoxion.at/assets/{artwork.title_image}?key=thumbnail"
+        />
+      {/if}
       <a href="/store/{artwork.id}" sapper:prefetch>
         <span>
           {artwork.name}
@@ -40,5 +45,14 @@
 <style>
   ul {
     list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 2em;
+    row-gap: 2em;
+  }
+
+  li > img {
+    width: 100%;
   }
 </style>

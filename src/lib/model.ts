@@ -4,4 +4,5 @@ export interface Entity {
 export interface Artwork extends Entity {
   name: string;
   price: number;
+  title_image: string;
 }
