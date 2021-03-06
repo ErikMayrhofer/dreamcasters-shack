@@ -27,7 +27,7 @@
     padding: 2em;
     margin: 0 auto;
     box-sizing: border-box;
-    min-height: 100vh;
+    /* TODO: Creates problems somewhy min-height: 100vh; */
   }
 
   /* .footer-border {

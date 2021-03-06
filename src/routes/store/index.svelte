@@ -55,6 +55,24 @@
     row-gap: 3em;
   }
 
+  @media only screen and (max-width: 1380px) {
+    ul {
+      grid-template-columns: auto auto auto;
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    ul {
+      grid-template-columns: auto auto;
+    }
+  }
+
+  @media only screen and (max-width: 670px) {
+    ul {
+      grid-template-columns: auto;
+    }
+  }
+
   img {
     width: calc(100% + 2px);
     margin: -1px;
