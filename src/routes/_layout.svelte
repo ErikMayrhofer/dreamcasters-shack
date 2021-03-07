@@ -22,9 +22,10 @@
 <!-- </div> -->
 <style>
   main {
+    --main-padding: 2em;
     position: relative;
     max-width: min(var(--content-width), 100vw);
-    padding: 2em;
+    padding: var(--main-padding);
     margin: 0 auto;
     box-sizing: border-box;
     /* TODO: Creates problems somewhy min-height: 100vh; */
@@ -32,7 +33,7 @@
 
   @media only screen and (max-width: 600px) {
     main {
-      padding: 1em;
+      --main-padding: 1em;
     }
   }
 

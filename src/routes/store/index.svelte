@@ -56,7 +56,7 @@
     row-gap: 1em;
   }
 
-  @media only screen and (max-width: 1380px) {
+  @media only screen and (max-width: 1400px) {
     ul {
       --column-count: 3;
     }
@@ -77,11 +77,12 @@
   }
   li {
     --trans: 300ms;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background-color: rgba(255, 255, 255, 0.1);
+    border: var(--light-border);
+    background-color: var(--color-light);
     box-shadow: none;
     transform: scale(1);
-    transition: var(--trans) box-shadow, var(--trans) transform;
+    transition: var(--trans) box-shadow, var(--trans) transform,
+      var(--trans) border;
   }
 
   @media only screen and (min-width: 600px) {
@@ -93,6 +94,7 @@
       /*Only use this when column-gap is at least 3em*/
       transform: scale(1.08);
       box-shadow: 0 0 10px black, 5px 5px 20px black;
+      border: 1px solid rgba(255, 255, 255, 0);
     }
     li:hover img {
       /*Only use this when column-gap is at least 3em*/
@@ -111,8 +113,8 @@
   }
 
   h1 {
-    font-size: 2em;
+    font-size: var(--font-size-large);
     padding: 0;
-    margin-top: 0;
+    margin-top: 1rem;
   }
 </style>

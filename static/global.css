@@ -19,6 +19,8 @@
   justify-content: space-between;
   overflow-y: scroll;
 
+  --color-lighter: #444444;
+  --color-light: #292929;
   --color-black: #1c1c1c;
   --color-blacker: #0f0f0f;
   --color-background: var(--color-black);
@@ -29,6 +31,8 @@
   --font-accent: playfair;
   --font-primary: dreams;
   --content-width: 80em;
+
+  --light-border: 1px solid var(--color-lighter);
 
   color: white;
   background-color: var(--color-black);
@@ -57,7 +61,7 @@ h6 {
   font-weight: bold;
 }
 h1 {
-  font-size: 2.5em;
+  font-size: var(--font-size-x-large);
   margin-bottom: 0.5em;
   padding-left: 0.5em;
 }
@@ -95,4 +99,22 @@ a.button:hover {
 
 a {
   color: white;
+}
+
+:root {
+  --font-size-large: 1.5em;
+  --font-size-x-large: 2.5em;
+  --font-size-xx-large: 2.5em;
+}
+@media only screen and (min-width: 600px) {
+  :root {
+    --font-size-large: 2em;
+    --font-size-xx-large: 3.5em;
+  }
+}
+@media only screen and (min-width: 1000px) {
+}
+@media only screen and (min-width: 1400px) {
+  :root {
+  }
 }

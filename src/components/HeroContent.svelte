@@ -4,7 +4,8 @@
 <div class="hero-content">
   <h1>Dreamcasters<br />Shack</h1>
   <p style="font-weight: bold;">
-    This site is still heavily under development.
+    This site is still heavily under DEVELOPMENT. Prices and Content are
+    Placeholders and not real values.
   </p>
   <a class="button shop" href="/store">Shop</a>
   <p>And this is the place, where our beautiful catch-phrase will reside.</p>
