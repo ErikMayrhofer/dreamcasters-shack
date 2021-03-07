@@ -47,49 +47,58 @@
 
 <style>
   ul {
+    --column-count: 4;
     list-style: none;
     padding: 0;
     display: grid;
-    grid-template-columns: auto auto auto auto;
-    column-gap: 3em;
-    row-gap: 3em;
+    grid-template-columns: repeat(var(--column-count), minmax(0, 1fr));
+    column-gap: 1em;
+    row-gap: 1em;
   }
 
   @media only screen and (max-width: 1380px) {
     ul {
-      grid-template-columns: auto auto auto;
+      --column-count: 3;
     }
   }
 
   @media only screen and (max-width: 1000px) {
     ul {
-      grid-template-columns: auto auto;
-    }
-  }
-
-  @media only screen and (max-width: 670px) {
-    ul {
-      grid-template-columns: auto;
+      --column-count: 2;
     }
   }
 
   img {
     width: calc(100% + 2px);
     margin: -1px;
+
+    transition: var(--trans) box-shadow, var(--trans) transform;
+    box-shadow: none;
   }
   li {
+    --trans: 300ms;
     border: 1px solid rgba(255, 255, 255, 0.15);
     background-color: rgba(255, 255, 255, 0.1);
     box-shadow: none;
     transform: scale(1);
-    transition: 300ms box-shadow, 300ms transform;
-    overflow: hidden;
-    width: 17em;
+    transition: var(--trans) box-shadow, var(--trans) transform;
   }
 
-  li:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 10px black, 5px 5px 20px black;
+  @media only screen and (min-width: 600px) {
+    ul {
+      column-gap: 3em;
+      row-gap: 3em;
+    }
+    li:hover {
+      /*Only use this when column-gap is at least 3em*/
+      transform: scale(1.08);
+      box-shadow: 0 0 10px black, 5px 5px 20px black;
+    }
+    li:hover img {
+      /*Only use this when column-gap is at least 3em*/
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), 5px 5px 30px rgba(0, 0, 0, 0.5);
+    }
   }
 
   div {

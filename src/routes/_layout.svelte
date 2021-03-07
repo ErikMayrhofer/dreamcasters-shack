@@ -23,11 +23,17 @@
 <style>
   main {
     position: relative;
-    max-width: var(--content-width);
+    max-width: min(var(--content-width), 100vw);
     padding: 2em;
     margin: 0 auto;
     box-sizing: border-box;
     /* TODO: Creates problems somewhy min-height: 100vh; */
+  }
+
+  @media only screen and (max-width: 600px) {
+    main {
+      padding: 1em;
+    }
   }
 
   /* .footer-border {

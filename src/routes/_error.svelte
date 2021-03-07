@@ -19,4 +19,8 @@ Looks like you got lost somewhere...
 {/if}
 
 <style>
+  pre {
+    overflow-x: scroll;
+    width: 100%;
+  }
 </style>
