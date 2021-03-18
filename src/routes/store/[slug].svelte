@@ -3,22 +3,23 @@
 
   export async function preload({ params }) {
     try {
-      console.log("Prefetching Artwork ", params.slug);
+      //console.log("Prefetching Artwork ", params.slug);
       const item = await client.items("artworks").read(params.slug);
-      console.log("Artwork: ", item);
+      //console.log("Artwork: ", item);
       return { item: item.data };
     } catch (e) {
-      console.log("Promise Failed", e);
+      console.trace("Promise Failed", e);
     }
     this.error(404, "Not found");
   }
 </script>
 
 <script lang="ts">
+  import Paypal from "../../components/Paypal.svelte";
   import type { Artwork } from "../../lib/model";
 
   export let item: Artwork;
-  console.log("Artwork: ", item);
+  //console.log("Artwork: ", item);
 </script>
 
 <img src={getAsset(item.title_image)} alt={item.name} />
@@ -32,6 +33,7 @@
     <section class="details">
       <h2>Shop</h2>
       <p>{item.price} €</p>
+      <Paypal />
     </section>
     <section class="description">
       <h2>Details</h2>

@@ -1,0 +1,46 @@
+<script lang="ts">
+  import { loadScript } from "@paypal/paypal-js";
+  import { onMount } from "svelte";
+  import { isDevelopment } from "../lib/devstore";
+
+  onMount(() => {
+    loadScript({
+      "client-id":
+        "AWoMdAYSvEDxZbbEnbu8sX1EpKm62MRmihlcTYmBIQJzzhkMkqfXxkQA88XsOGmNVjDASfyVH9tofX0M",
+    })
+      .then((paypal) => {
+        paypal
+          .Buttons({
+            createOrder: function (data, actions) {
+              // This function sets up the details of the transaction, including the amount and line item details.
+              return actions.order.create({
+                purchase_units: [
+                  {
+                    amount: {
+                      value: "0.01",
+                    },
+                  },
+                ],
+              });
+            },
+            onApprove: function (data, actions) {
+              // This function captures the funds from the transaction.
+              return actions.order.capture().then(function (details) {
+                // This function shows a transaction success message to your buyer.
+                alert(
+                  "Transaction completed by " + details.payer.name.given_name
+                );
+              });
+            },
+          })
+          .render("#paypal-button-container");
+      })
+      .catch((err) => {
+        console.error("failed to load the PayPal JS SDK script", err);
+      });
+  });
+</script>
+
+<p>{$isDevelopment}</p>
+
+<div id="paypal-button-container" class:prodHide={$isDevelopment === false} />

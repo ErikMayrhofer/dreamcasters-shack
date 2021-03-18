@@ -1,3 +1,7 @@
+<script lang="ts">
+  import { isDevelopment } from "../lib/devstore";
+</script>
+
 <footer>
   <section>
     <h1>Team</h1>
@@ -8,6 +12,12 @@
     <h2>Technical Support</h2>
     <ul>
       <li>Erik Mayrhofer</li>
+      <li>
+        <button
+          style="display: inline-block"
+          on:click={() => ($isDevelopment = true)}>Dev</button
+        >
+      </li>
     </ul>
   </section>
   <section>

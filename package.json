@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@directus/sdk-js": "^9.0.0-rc.37",
+    "@paypal/paypal-js": "^3.1.1",
     "compression": "^1.7.1",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",

@@ -118,3 +118,23 @@ a {
   :root {
   }
 }
+
+.prodHide {
+  position: relative;
+}
+.prodHide::after {
+  content: "Not available yet due to WIP-Status of the Website";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  font-size: 1.1em;
+  font-weight: bold;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-primary);
+}
