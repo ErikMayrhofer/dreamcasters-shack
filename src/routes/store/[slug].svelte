@@ -17,9 +17,20 @@
 <script lang="ts">
   import Paypal from "../../components/Paypal.svelte";
   import type { Artwork } from "../../lib/model";
+  import { cart } from "../../lib/cart";
+  import { goto } from "@sapper/app";
+  import CheckoutLink from "../../components/CheckoutLink.svelte";
 
   export let item: Artwork;
-  //console.log("Artwork: ", item);
+
+  function addToCart() {
+    cart.addItem({});
+  }
+
+  async function buyNow() {
+    await goto("/cart");
+    addToCart();
+  }
 </script>
 
 <img src={getAsset(item.title_image)} alt={item.name} />
@@ -33,7 +44,9 @@
     <section class="details">
       <h2>Shop</h2>
       <p>{item.price} €</p>
-      <Paypal />
+      <!-- <button on:click={addToCart}>Add to cart</button> -->
+      <CheckoutLink {item} />
+      <!-- <Paypal /> -->
     </section>
     <section class="description">
       <h2>Details</h2>

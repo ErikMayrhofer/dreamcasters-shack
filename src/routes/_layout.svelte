@@ -1,8 +1,14 @@
 <script lang="ts">
   import Nav from "../components/Nav.svelte";
   import Footer from "../components/Footer.svelte";
+  import { onMount } from "svelte";
+  import { cart } from "../lib/cart";
 
   export let segment: string;
+
+  onMount(() => {
+    cart.useLocalStorage();
+  });
 </script>
 
 {#if !!segment}
