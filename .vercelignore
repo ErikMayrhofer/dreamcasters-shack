@@ -1,4 +1,5 @@
 /cypress
-!node_modules
-/node_modules/*
+/node_modules
 /.vscode/
+/.svelte/
+/.vercel_build_output/
