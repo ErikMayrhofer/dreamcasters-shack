@@ -71,6 +71,7 @@
     color: white;
     font-size: 1em;
     font-family: var(--font-accent);
+    line-height: 1.3em;
   }
   @media only screen and (max-width: 1000px) {
     nav > ul > li:last-of-type {

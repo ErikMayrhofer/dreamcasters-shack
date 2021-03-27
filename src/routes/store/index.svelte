@@ -34,6 +34,8 @@
           <img
             alt="Preview for {artwork.name}"
             src="https://api.dreamcaster.obyoxion.at/assets/{artwork.title_image}?key=thumbnail"
+            width="250"
+            height="250"
           />
         {/if}
         <div>
@@ -73,11 +75,15 @@
   }
 
   img {
+    min-width: 0;
     width: calc(100% + 2px);
+    height: auto;
     margin: -1px;
 
     transition: var(--trans) box-shadow, var(--trans) transform;
     box-shadow: none;
+
+    display: block; /*Also display as square when fetch fails*/
   }
   li {
     --trans: 300ms;

@@ -3,7 +3,7 @@
 
 <div class="hero-content">
   <h1>Dreamcasters<br />Shack</h1>
-  <p style="font-weight: bold;">
+  <p style="font-weight: bold; font-family: monospace">
     This site is still heavily under DEVELOPMENT. Prices and Content are
     Placeholders and not real values.
   </p>
@@ -34,6 +34,7 @@
     font-size: 3em;
     font-style: normal;
     text-shadow: 1px 1px 0 black, 2px 2px 0 black, 3px 3px 0 black;
+    line-height: 1.2em;
   }
   p {
     font-family: var(--font-accent);
