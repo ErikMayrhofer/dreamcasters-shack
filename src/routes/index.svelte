@@ -1,11 +1,11 @@
 <script>
-  import background_large from "images/background/background_complete.webp";
-  import background_preview from "images/background_complete_640_bad.webp";
-  import hero_preview from "images/hero_640_bad.webp";
-  import hero_large from "images/hero.webp";
+  import background_large from "$lib/images/background/background_complete.webp";
+  import background_preview from "$lib/images/background_complete_640_bad.webp";
+  import hero_preview from "$lib/images/hero_640_bad.webp";
+  import hero_large from "$lib/images/hero.webp";
   import HeroContent from "../components/HeroContent.svelte";
   import { onMount } from "svelte";
-  import { lazyImage } from "../lib/image";
+  import { lazyImage } from "$lib/image";
 
   let hero = hero_preview;
   let background = background_preview;

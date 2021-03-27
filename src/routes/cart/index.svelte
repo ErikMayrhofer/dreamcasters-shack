@@ -1,27 +1,43 @@
 <script lang="ts" context="module">
-  export async function preload(page) {
+  /**
+   * @type {import('@sveltejs/kit').Load}
+   */
+  export async function load({ page, fetch }) {
+    console.log(page);
+    const query = page.query as URLSearchParams;
     let cartContent: CartItem[];
 
-    if ("encodedCartContents" in page.query) {
-      const cartData = decodeCart(page.query.encodedCartContents);
+    if (query.has("encodedCartContents")) {
+      const cartData = decodeCart(query.get("encodedCartContents"));
       cartContent = cartData;
     } else {
       cartContent = get(cart).items;
     }
 
-    console.log("Prefetching Cart");
-    const artworks = await client
-      .items("artworks")
-      .read(cartContent.map((it) => it.id));
-    console.log("Prefetched: ", artworks);
+    console.log("Prefetching Cart", cartContent);
+    const artworks = await api.artwork(
+      fetch,
+      cartContent.map((it) => it.id)
+    );
 
-    return { cartData: artworks };
+    // const artworks = await client
+    //   .items("artworks")
+    //   .read(cartContent.map((it) => it.id));
+    console.log("Prefetched: ", artworks.data);
+
+    if (artworks.data) {
+      return { props: { cartData: artworks.data } };
+    } else {
+      return {
+        status: 404,
+      };
+    }
   }
 </script>
 
 <script lang="ts">
   import Paypal from "../../components/Paypal.svelte";
-  import { client } from "../../lib/api";
+  import { api } from "../../lib/api";
   import { cart, decodeCart } from "../../lib/cart";
   import type { CartData, CartItem } from "../../lib/cart";
   import { get } from "svelte/store";
@@ -34,7 +50,7 @@
 <h1>Cart</h1>
 
 <ul>
-  {#each cartData.items as item}
+  {#each cartData as item}
     <li>
       {JSON.stringify(item)}
     </li>

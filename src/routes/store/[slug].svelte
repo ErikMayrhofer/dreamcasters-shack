@@ -1,16 +1,25 @@
 <script context="module" lang="ts">
-  import { client, getAsset } from "../../lib/api";
+  import { api, getAsset } from "../../lib/api";
 
-  export async function preload({ params }) {
+  export async function load({ page, fetch }) {
     try {
-      //console.log("Prefetching Artwork ", params.slug);
-      const item = await client.items("artworks").read(params.slug);
-      //console.log("Artwork: ", item);
-      return { item: item.data };
+      console.log("Prefetching Artwork ", page.params.slug);
+      const item = await api.artwork(fetch, page.params.slug);
+      if (item.data) {
+        console.log("Artwork: ", item);
+        return { props: { item: item.data } };
+      } else {
+        return {
+          status: 404,
+        };
+      }
     } catch (e) {
       console.trace("Promise Failed", e);
+      return {
+        status: 404,
+        error: e,
+      };
     }
-    this.error(404, "Not found");
   }
 </script>
 
@@ -18,7 +27,7 @@
   import Paypal from "../../components/Paypal.svelte";
   import type { Artwork } from "../../lib/model";
   import { cart } from "../../lib/cart";
-  import { goto } from "@sapper/app";
+  import { goto } from "$app/navigation";
   import CheckoutLink from "../../components/CheckoutLink.svelte";
 
   export let item: Artwork;

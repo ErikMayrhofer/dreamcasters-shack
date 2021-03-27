@@ -3,19 +3,21 @@
   import Footer from "../components/Footer.svelte";
   import { onMount } from "svelte";
   import { cart } from "../lib/cart";
+  import { page } from "$app/stores";
 
-  export let segment: string;
+  let segment: string;
+  $: segment = $page.path;
 
   onMount(() => {
     cart.useLocalStorage();
   });
 </script>
 
-{#if !!segment}
+{#if segment != "/"}
   <Nav {segment} />
 {/if}
 
-<main class:full={!segment}>
+<main class:full={segment == "/"}>
   <slot />
 </main>
 

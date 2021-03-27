@@ -7,7 +7,7 @@
     This site is still heavily under DEVELOPMENT. Prices and Content are
     Placeholders and not real values.
   </p>
-  <a class="button shop" href="/store">Shop</a>
+  <a class="button shop" href="/store" target="">Shop</a>
   <p>And this is the place, where our beautiful catch-phrase will reside.</p>
 </div>
 

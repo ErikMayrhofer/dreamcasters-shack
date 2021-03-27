@@ -1,17 +1,21 @@
 <script context="module" lang="ts">
-  import { client } from "../../lib/api";
-
-  export async function preload(page, session) {
+  import { api } from "$lib/api";
+  /**
+   * @type {import('@sveltejs/kit').Load}
+   */
+  export async function load({ page, session, fetch }) {
     try {
       console.log("Prefetching Artworks");
-      const artworks = await client.items("artworks").read();
-      console.log("Feching Succeeded");
-      return { artworks: artworks.data };
+      const artworks = await api.artworks(fetch);
+      console.log("Feching Succeeded", artworks);
+      return { props: { artworks: artworks.data } };
     } catch (e) {
-      console.log("Fetching of Artworks failed: ", e);
+      console.error("Fetching Artworks Failed: ", e);
+      return {
+        status: 500,
+        error: e,
+      };
     }
-    console.log("Wut?");
-    this.error(500, "Prefetch failed");
   }
 </script>
 
@@ -25,7 +29,7 @@
 <ul>
   {#each artworks as artwork}
     <li>
-      <a href="/store/{artwork.id}" sapper:prefetch>
+      <a href="/store/{artwork.id}" sveltekit:prefetch>
         {#if !!artwork.title_image}
           <img
             alt="Preview for {artwork.name}"

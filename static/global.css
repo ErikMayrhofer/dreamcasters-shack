@@ -12,7 +12,7 @@
   src: url(/playfair/PlayfairDisplay-Italic-VariableFont_wght.ttf);
 }
 
-#sapper {
+#svelte {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -44,7 +44,7 @@
   /* --font-accent: "Shadows Into Light", cursive; */
 }
 
-#sapper footer {
+#svelte footer {
   background-color: var(--color-footer);
   color: white;
 }
