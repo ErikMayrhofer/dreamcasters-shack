@@ -1,6 +1,6 @@
 <script>
   import background_large from "$lib/images/background/background_complete.webp";
-  import background_preview from "$lib/images/background_complete_640_bad.webp";
+  import background_preview from "$lib/images/background/background_complete_640_bad.webp";
   import hero_preview from "$lib/images/hero_640_bad.webp";
   import hero_large from "$lib/images/hero.webp";
   import HeroContent from "../components/HeroContent.svelte";
@@ -45,7 +45,7 @@
   <div class="window a" />
   <div class="window b" />
   <div class="window c" />
-  <img class="background" src={background} alt="background" />
+  <div style="background-image: url({background})" class="background" />
   <div class="bottom-shadow" />
 </div>
 
@@ -125,11 +125,18 @@
     width: 100%;
     overflow-x: hidden;
   }
-  img.background {
+  div.background {
     width: 100vw;
     position: relative;
     margin-bottom: -4px; /*Why? Without this there is an ever so small hole at the bottom*/
     pointer-events: none;
+
+    padding-top: 250%;
+    height: 0;
+    overflow: hidden;
+
+    /*Aspect Ratio: 2w 5h - Use this aspect ratio box to prevent layout shifts*/
+    background-size: cover;
   }
   .window {
     position: absolute;

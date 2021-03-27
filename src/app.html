@@ -4,16 +4,157 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <meta name="theme-color" content="#333333" />
-    <script
-      src="https://www.paypal.com/sdk/js?client-id=AWoMdAYSvEDxZbbEnbu8sX1EpKm62MRmihlcTYmBIQJzzhkMkqfXxkQA88XsOGmNVjDASfyVH9tofX0M"
-    >
-      // Required. Replace YOUR_CLIENT_ID with your sandbox client ID.
-    </script>
 
-    <link rel="stylesheet" href="/global.css" />
+    <link rel="preload" href="/BetterDreams.woff" />
     <link rel="manifest" href="manifest.json" crossorigin="use-credentials" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     %svelte.head%
+
+    <style type="text/css">
+      @font-face {
+        font-family: dreams;
+        src: url(/BetterDreams.woff);
+        font-display: swap;
+      }
+      @font-face {
+        font-family: playfair;
+        src: url(/playfair/PlayfairDisplay-VariableFont_wght.ttf);
+        font-display: swap;
+      }
+      @font-face {
+        font-family: playfair;
+        font-style: italic;
+        src: url(/playfair/PlayfairDisplay-Italic-VariableFont_wght.ttf);
+        font-display: swap;
+      }
+
+      #svelte {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow-y: scroll;
+
+        --color-lighter: #444444;
+        --color-light: #292929;
+        --color-black: #1c1c1c;
+        --color-blacker: #0f0f0f;
+        --color-background: var(--color-black);
+        --color-footer: var(--color-blacker);
+        --color-primary: #ffed46;
+        --color-secondary: #0b4050;
+        --color-warn: #fe4a49;
+        --font-accent: playfair;
+        --font-primary: dreams;
+        --content-width: 80em;
+
+        --light-border: 1px solid var(--color-lighter);
+
+        color: white;
+        background-color: var(--color-black);
+        /* --font-accent: "Akaya Telivigala", cursive; */
+        /* --font-accent: "Caveat", cursive; */
+        /* --font-accent: "Indie Flower", cursive; */
+        /* --font-accent: "Playfair Display"; */
+        /* --font-accent: "Satisfy", cursive; */
+        /* --font-accent: "Shadows Into Light", cursive; */
+      }
+
+      #svelte footer {
+        background-color: var(--color-footer);
+        color: white;
+      }
+
+      /* GENERAL STYLINGS */
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: var(--font-accent);
+        font-style: italic;
+        font-weight: bold;
+      }
+      h1 {
+        font-size: var(--font-size-x-large);
+        margin-bottom: 0.5em;
+        padding-left: 0.5em;
+      }
+      h1::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-primary);
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+
+      /* Button */
+      a.button {
+        --button-color: var(--color-primary);
+        font-family: var(--font-accent);
+        text-decoration: none;
+        color: var(--button-color);
+        border: 1px solid var(--button-color);
+        border-radius: 0.25em;
+        padding: 0.5em 1em;
+        background-color: #1c1c1c88;
+        box-shadow: 0 0 0 0 black;
+        transition: 0.1s all;
+      }
+      a.button:hover {
+        box-shadow: 0px 0px 5px 0 rgba(0, 0, 0, 0.5);
+      }
+
+      a {
+        color: white;
+      }
+
+      :root {
+        --font-size-large: 1.5em;
+        --font-size-x-large: 2.5em;
+        --font-size-xx-large: 2.5em;
+      }
+      @media only screen and (min-width: 600px) {
+        :root {
+          --font-size-large: 2em;
+          --font-size-xx-large: 3.5em;
+        }
+      }
+      @media only screen and (min-width: 1000px) {
+      }
+      @media only screen and (min-width: 1400px) {
+        :root {
+        }
+      }
+
+      .prodHide {
+        position: relative;
+      }
+      .prodHide::after {
+        content: "Not available yet due to WIP-Status of the Website";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        font-size: 1.1em;
+        font-weight: bold;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--color-primary);
+      }
+    </style>
   </head>
   <body>
     <div id="svelte"></div>

@@ -1,1 +1,0 @@
-For sapper image cachability or sth i haven't read that yet.

@@ -41,6 +41,13 @@
   });
 </script>
 
+<svelte:head>
+  // Required. Replace YOUR_CLIENT_ID with your sandbox client ID.
+  <script
+    src="https://www.paypal.com/sdk/js?client-id=AWoMdAYSvEDxZbbEnbu8sX1EpKm62MRmihlcTYmBIQJzzhkMkqfXxkQA88XsOGmNVjDASfyVH9tofX0M"
+    defer></script>
+</svelte:head>
+
 <p>{$isDevelopment}</p>
 
 <div id="paypal-button-container" class:prodHide={$isDevelopment === false} />
