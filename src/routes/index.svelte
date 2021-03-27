@@ -26,6 +26,7 @@
 
 <svelte:head>
   <title>Dreamcasters Shack</title>
+  <meta name="Description" content="Artistic Dolls crafted with passion." />
 </svelte:head>
 
 <!--<Login />-->
@@ -33,7 +34,7 @@
   <img src={hero} alt="hero" />
   <div class="hero-content-holder">
     <HeroContent />
-    <button class="scrolldown" on:click={() => scroll()}>
+    <button class="scrolldown" on:click={() => scroll()} aria-hidden="true">
       <svg viewBox="0 0 100 100">
         <polyline points="10,10 50,60 90,10" />
       </svg>
