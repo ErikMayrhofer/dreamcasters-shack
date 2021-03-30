@@ -23,10 +23,10 @@
     // const artworks = await client
     //   .items("artworks")
     //   .read(cartContent.map((it) => it.id));
-    console.log("Prefetched: ", artworks.data);
+    console.log("Prefetched: ", artworks);
 
-    if (artworks.data) {
-      return { props: { cartData: artworks.data } };
+    if (artworks) {
+      return { props: { cartData: artworks } };
     } else {
       return {
         status: 404,
@@ -45,6 +45,10 @@
 
   export let cartData: Artwork[];
   export let javascriptNotice: boolean = false;
+
+  function remove(item: Artwork) {
+    cartData = cartData.filter((it) => it.id !== item.id);
+  }
 </script>
 
 <h1>Cart</h1>
@@ -53,6 +57,7 @@
   {#each cartData as item}
     <li>
       {JSON.stringify(item)}
+      <button on:click={() => remove(item)}>X</button>
     </li>
   {/each}
 </ul>

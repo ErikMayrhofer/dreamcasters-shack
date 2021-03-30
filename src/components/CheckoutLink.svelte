@@ -18,6 +18,4 @@
   });
 </script>
 
-<a href="/cart?{state}" target="">
-  Checkout {$cart.items.length + 1} Item
-</a>
+<a href="/cart?{state}" target=""> Buy Now </a>

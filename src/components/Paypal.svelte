@@ -1,53 +1,36 @@
 <script lang="ts">
+  import { paypalLoader } from "$lib/paypal";
+
   import { loadScript } from "@paypal/paypal-js";
   import { onMount } from "svelte";
   import { isDevelopment } from "../lib/devstore";
 
-  onMount(() => {
-    loadScript({
-      "client-id":
-        "AWoMdAYSvEDxZbbEnbu8sX1EpKm62MRmihlcTYmBIQJzzhkMkqfXxkQA88XsOGmNVjDASfyVH9tofX0M",
-    })
-      .then((paypal) => {
-        paypal
-          .Buttons({
-            createOrder: function (data, actions) {
-              // This function sets up the details of the transaction, including the amount and line item details.
-              return actions.order.create({
-                purchase_units: [
-                  {
-                    amount: {
-                      value: "0.01",
-                    },
-                  },
-                ],
-              });
-            },
-            onApprove: function (data, actions) {
-              // This function captures the funds from the transaction.
-              return actions.order.capture().then(function (details) {
-                // This function shows a transaction success message to your buyer.
-                alert(
-                  "Transaction completed by " + details.payer.name.given_name
-                );
-              });
-            },
-          })
-          .render("#paypal-button-container");
+  onMount(async () => {
+    const paypal = await paypalLoader.load();
+    paypal
+      .Buttons({
+        createOrder: function (data, actions) {
+          // This function sets up the details of the transaction, including the amount and line item details.
+          return actions.order.create({
+            purchase_units: [
+              {
+                amount: {
+                  value: "0.01",
+                },
+              },
+            ],
+          });
+        },
+        onApprove: function (data, actions) {
+          // This function captures the funds from the transaction.
+          return actions.order.capture().then(function (details) {
+            // This function shows a transaction success message to your buyer.
+            alert("Transaction completed by " + details.payer.name.given_name);
+          });
+        },
       })
-      .catch((err) => {
-        console.error("failed to load the PayPal JS SDK script", err);
-      });
+      .render("#paypal-button-container");
   });
 </script>
-
-<svelte:head>
-  // Required. Replace YOUR_CLIENT_ID with your sandbox client ID.
-  <script
-    src="https://www.paypal.com/sdk/js?client-id=AWoMdAYSvEDxZbbEnbu8sX1EpKm62MRmihlcTYmBIQJzzhkMkqfXxkQA88XsOGmNVjDASfyVH9tofX0M"
-    defer></script>
-</svelte:head>
-
-<p>{$isDevelopment}</p>
 
 <div id="paypal-button-container" class:prodHide={$isDevelopment === false} />

@@ -5,9 +5,9 @@
     try {
       console.log("Prefetching Artwork ", page.params.slug);
       const item = await api.artwork(fetch, page.params.slug);
-      if (item.data) {
+      if (item) {
         console.log("Artwork: ", item);
-        return { props: { item: item.data } };
+        return { props: { item: item } };
       } else {
         return {
           status: 404,
@@ -29,17 +29,10 @@
   import { cart } from "../../lib/cart";
   import { goto } from "$app/navigation";
   import CheckoutLink from "../../components/CheckoutLink.svelte";
+  import Cart from "../../components/Cart.svelte";
+  import Shop from "../../components/Shop.svelte";
 
   export let item: Artwork;
-
-  function addToCart() {
-    cart.addItem({});
-  }
-
-  async function buyNow() {
-    await goto("/cart");
-    addToCart();
-  }
 </script>
 
 <img src={getAsset(item.title_image)} alt={item.name} />
@@ -52,10 +45,7 @@
   <article class="card">
     <section class="details">
       <h2>Shop</h2>
-      <p>{item.price} €</p>
-      <!-- <button on:click={addToCart}>Add to cart</button> -->
-      <CheckoutLink {item} />
-      <!-- <Paypal /> -->
+      <Shop {item} />
     </section>
     <section class="description">
       <h2>Details</h2>
@@ -147,7 +137,7 @@
     grid-area: footer;
   }
 
-  p::first-letter {
+  section:not(.details) > p::first-letter {
     display: block;
     float: left;
     font-size: 2em;

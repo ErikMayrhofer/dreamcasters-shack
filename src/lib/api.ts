@@ -10,12 +10,23 @@ export function getAsset(name: string): string {
 
 export const api = {
   artworks: async (fetchFunc: any) => {
-    return await (await fetchFunc(`${url}/items/artworks`)).json();
+    return (await (await fetchFunc(`${url}/items/artworks`)).json()).data;
   },
   artwork: async (fetchFunc: any, id: string | string[]) => {
-    if (id.length == 0) {
-      return { data: [] };
+    if (Array.isArray(id)) {
+      id = id.filter((it) => it !== null && it !== undefined);
     }
-    return await (await fetchFunc(`${url}/items/artworks/${id}`)).json();
+    if (id.length == 0) {
+      return [];
+    }
+    console.log("Fetching: ", id);
+    const result = (
+      await (await fetchFunc(`${url}/items/artworks/${id}`)).json()
+    ).data;
+    console.log(" => ", result);
+    if (Array.isArray(id) && !Array.isArray(result)) {
+      return [result];
+    }
+    return result;
   },
 };

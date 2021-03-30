@@ -8,7 +8,7 @@
       console.log("Prefetching Artworks");
       const artworks = await api.artworks(fetch);
       console.log("Feching Succeeded", artworks);
-      return { props: { artworks: artworks.data } };
+      return { props: { artworks: artworks } };
     } catch (e) {
       console.error("Fetching Artworks Failed: ", e);
       return {
@@ -33,7 +33,7 @@
         {#if !!artwork.title_image}
           <img
             alt="Preview for {artwork.name}"
-            src="https://api.dreamcaster.obyoxion.at/assets/{artwork.title_image}?key=thumbnail"
+            src="https://api.dreamcaster.obyoxion.at/assets/{artwork.title_image}?key=thumbnail250"
             width="250"
             height="250"
           />
