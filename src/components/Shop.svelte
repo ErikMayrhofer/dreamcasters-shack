@@ -21,21 +21,19 @@
 </script>
 
 <div class="pricing">{item.price} €</div>
-{#if !contained}
-  <p>
-    <button on:click={add}>Add To Cart</button><span>and continue Shopping</span
-    >
-    <span>Or</span>
-  </p>
-{:else}
-  <p>Item is in your cart.</p>
-  <button on:click={remove}>Remove from Cart</button>
-{/if}
-<p>
-  <Cart currentItem={item} />
+<div class="cart-button">
+  {#if !contained}
+    <button class="button" on:click={add}>Add To Cart</button>
+  {/if}
+</div>
+<p class="raised">
+  <Cart />
 </p>
 
 <style>
+  div.cart-button {
+    height: 50px;
+  }
   div.pricing {
     text-align: center;
     font-size: 2em;
@@ -45,5 +43,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  p.raised {
+    border: 1px solid #000;
+    background-color: #0008;
+    box-shadow: 0 0 10px 0 black;
+    border-radius: 1em;
+    padding: 1em;
   }
 </style>

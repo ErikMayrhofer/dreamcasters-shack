@@ -7,16 +7,11 @@
   import { onMount } from "svelte";
   import Paypal from "./Paypal.svelte";
 
-  export let currentItem: Artwork | null = null;
-
   let rawItems: Artwork[] = [];
   let items: Artwork[] = [];
-  let allItems: Artwork[] = [];
   let contained: boolean = false;
 
-  $: items = rawItems.filter((it) => it.id != currentItem.id);
-  $: contained = rawItems.findIndex((it) => it.id === currentItem.id) >= 0;
-  $: allItems = [...items, ...(currentItem ? [currentItem] : [])];
+  $: items = rawItems;
 
   onMount(() => {
     const sub = cart.subscribe(async (value) => {
@@ -33,8 +28,6 @@
     };
   });
 
-  $: console.log("ITEMS: ", items, allItems);
-
   function remove(item: Artwork) {
     //Only Remove for preview purposes.
     items = items.filter((it) => it.id !== item.id);
@@ -42,40 +35,95 @@
   }
 </script>
 
-{#if allItems.length > 0}
-  <p>Buy {allItems.length} Artwork Now</p>
-  <table>
-    <thead>
+<p class="cart-header">Cart</p>
+<table>
+  <thead>
+    <tr>
+      <th />
       <th>Name</th>
       <th>Price</th>
-    </thead>
-    {#each items as item}
+    </tr>
+  </thead>
+  {#each items as item}
+    <tr>
+      <td>
+        <button on:click={() => remove(item)} class="remove">X</button>
+      </td>
+      <td><a href="/store/{item.id}">{item.name}</a></td>
+      <td>{item.price} €</td>
+    </tr>
+  {:else}
+    {#if !contained}
       <tr>
-        <td>
-          <button on:click={() => remove(item)}>X</button>
-        </td>
-        <td><a href="/store/{item.id}">{item.name}</a></td>
-        <td>{item.price}</td>
-      </tr>
-    {/each}
-    {#if currentItem}
-      <tr>
-        <td>C</td>
-        <td>{currentItem.name}</td>
-        <td>{currentItem.price}</td>
+        <td colspan="3" class="empty-notice">Cart is empty.</td>
       </tr>
     {/if}
-  </table>
-{/if}
-<div class:hidden={allItems.length == 0}>
+  {/each}
+</table>
+<div class:collapsed={items.length == 0} class="paypal">
+  <p>Buy {items.length} Artwork Now</p>
   <Paypal />
 </div>
 
 <style>
   table {
+    border: 1px solid white;
+    margin-bottom: 1em;
+    width: 100%;
+    border-collapse: collapse;
   }
 
-  div.hidden {
-    display: none;
+  th:first-of-type {
+    width: 50px;
+  }
+
+  thead > tr {
+    background-color: rgb(48, 48, 48);
+  }
+  td {
+    text-align: center;
+  }
+
+  tr {
+    height: 50px;
+  }
+
+  div.paypal {
+    transition: 200ms max-height;
+    max-height: 200px;
+    overflow: hidden;
+  }
+  div.collapsed {
+    max-height: 0;
+  }
+
+  td.empty-notice {
+    color: #fff6;
+  }
+
+  p.cart-header {
+    margin: 0;
+    margin-bottom: 0.25em;
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--color-primary);
+    font-family: var(--font-accent);
+    font-style: italic;
+  }
+
+  button.remove {
+    border: none;
+    background-color: #fff1;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    margin: 5px;
+  }
+  button.remove:hover {
+    background-color: #fff3;
+  }
+  p {
+    text-align: center;
   }
 </style>
