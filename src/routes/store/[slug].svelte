@@ -24,18 +24,16 @@
 </script>
 
 <script lang="ts">
-  import Paypal from "../../components/Paypal.svelte";
   import type { Artwork } from "../../lib/model";
-  import { cart } from "../../lib/cart";
-  import { goto } from "$app/navigation";
-  import CheckoutLink from "../../components/CheckoutLink.svelte";
-  import Cart from "../../components/Cart.svelte";
   import Shop from "../../components/Shop.svelte";
+  import Gallery from "../../components/Gallery.svelte";
 
   export let item: Artwork;
 </script>
 
-<img src={getAsset(item.title_image)} alt={item.name} />
+<div class="gallery">
+  <Gallery {item} />
+</div>
 <div class="mobile-wrapper">
   <header class="card">
     <h1>
@@ -68,7 +66,7 @@
 </div>
 
 <style>
-  img {
+  div.gallery {
     width: calc(100% + 2 * var(--main-padding));
     margin: calc(0px - var(--main-padding));
     margin-bottom: -30px;

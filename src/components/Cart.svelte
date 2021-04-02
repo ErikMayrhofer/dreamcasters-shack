@@ -90,7 +90,7 @@
 
   div.paypal {
     transition: 200ms max-height;
-    max-height: 200px;
+    max-height: 500px;
     overflow: hidden;
   }
   div.collapsed {

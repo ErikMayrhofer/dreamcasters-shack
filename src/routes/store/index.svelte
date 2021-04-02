@@ -20,6 +20,7 @@
 </script>
 
 <script lang="ts">
+  import { getAsset, ThumbnailKey } from "$lib/api";
   import type { Artwork } from "../../lib/model";
 
   export let artworks: Artwork[];
@@ -33,7 +34,7 @@
         {#if !!artwork.title_image}
           <img
             alt="Preview for {artwork.name}"
-            src="https://api.dreamcaster.obyoxion.at/assets/{artwork.title_image}?key=thumbnail250"
+            src={getAsset(artwork.title_image, ThumbnailKey.Thumbnail250)}
             width="250"
             height="250"
           />

@@ -4,8 +4,15 @@ const url = "https://api.dreamcaster.obyoxion.at";
 
 //export const client = new DirectusSDK("https://api.dreamcaster.obyoxion.at");
 
-export function getAsset(name: string): string {
-  return `${url}/assets/${name}`;
+export enum ThumbnailKey {
+  Thumbnail250 = "thumbnail250",
+}
+
+export function getAsset(
+  name: string,
+  key: ThumbnailKey | null = null
+): string {
+  return `${url}/assets/${name}${key ? "?key=" + key : ""}`;
 }
 
 export const api = {
@@ -21,7 +28,11 @@ export const api = {
     }
     console.log("Fetching: ", id);
     const result = (
-      await (await fetchFunc(`${url}/items/artworks/${id}`)).json()
+      await (
+        await fetchFunc(
+          `${url}/items/artworks/${id}?fields[]=*&fields[]=gallery.*`
+        )
+      ).json()
     ).data;
     console.log(" => ", result);
     if (Array.isArray(id) && !Array.isArray(result)) {
