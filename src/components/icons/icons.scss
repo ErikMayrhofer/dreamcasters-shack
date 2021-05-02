@@ -1,0 +1,13 @@
+polyline {
+  fill: none;
+  stroke-width: 3;
+  stroke: white;
+  stroke-linecap: round;
+  stroke-linejoin: bevel;
+
+  transition: 200ms stroke-width;
+}
+
+svg:hover > polyline {
+  stroke-width: 5;
+}

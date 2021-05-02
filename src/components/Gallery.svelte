@@ -1,6 +1,9 @@
 <script lang="ts">
   import { getAsset } from "$lib/api";
   import type { Artwork } from "$lib/model";
+  import ArrowIconLeft from "./icons/ArrowIconLeft.svelte";
+  import ArrowIconRight from "./icons/ArrowIconRight.svelte";
+  import Fullscreen from "./icons/Fullscreen.svelte";
 
   export let item: Artwork;
 
@@ -38,17 +41,28 @@
 <div class="img-container" class:fullscreen>
   <img src={getAsset(currentImage)} alt={item.name} />
 
-  <button on:click={enterFullscreen}>F</button>
+  <button on:click|stopPropagation={prev} class="prev">
+    <ArrowIconLeft />
+  </button>
+  <button on:click={enterFullscreen}>
+    <Fullscreen />
+  </button>
+
+  <button on:click|stopPropagation={next} class="next">
+    <ArrowIconRight />
+  </button>
 </div>
 
 {#if fullscreen}
   <div class="overlay" on:click={closeFullscreen}>
     <button class="close">X</button>
-    <img
-      on:click|stopPropagation={() => {}}
-      src={getAsset(currentImage)}
-      alt={item.name}
-    />
+    <div class="scrollcontainer">
+      <img
+        on:click|stopPropagation={() => {}}
+        src={getAsset(currentImage)}
+        alt={item.name}
+      />
+    </div>
     <div>
       <button on:click|stopPropagation={next}>Next</button>
       <button on:click|stopPropagation={prev}>Prev</button>
@@ -62,8 +76,8 @@
     height: 600px;
     position: relative;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   .img-container > * {
@@ -93,6 +107,9 @@
   .img-container > button {
     position: relative;
     align-self: center;
+
+    background-color: transparent;
+    border: none;
   }
 
   .overlay {
@@ -109,9 +126,14 @@
     align-items: center;
   }
 
-  .overlay > img {
-    max-width: 80%;
+  .overlay > .scrollcontainer {
     height: 80%;
+    max-width: 100vw;
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
+  .scrollcontainer > img {
+    height: 100%;
   }
 
   .close {
