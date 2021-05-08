@@ -23,7 +23,7 @@
 <div class="pricing">{item.price} €</div>
 <div class="cart-button">
   {#if !contained}
-    <button class="button" on:click={add}>Add To Cart</button>
+    <button on:click={add}>Add To Cart</button>
   {/if}
 </div>
 <p class="raised">
@@ -33,6 +33,9 @@
 <style>
   div.cart-button {
     height: 50px;
+  }
+  .cart-button > button {
+
   }
   div.pricing {
     text-align: center;

@@ -1,6 +1,7 @@
 import { loadScript } from "@paypal/paypal-js";
+import type { PayPalNamespace } from "@paypal/paypal-js";
 
-let paypalInstance = null;
+let paypalInstance: PayPalNamespace = null;
 
 export const paypalLoader = {
   async load() {
@@ -9,6 +10,7 @@ export const paypalLoader = {
       paypalInstance = await loadScript({
         "client-id":
           "AWoMdAYSvEDxZbbEnbu8sX1EpKm62MRmihlcTYmBIQJzzhkMkqfXxkQA88XsOGmNVjDASfyVH9tofX0M",
+        currency: "EUR",
       });
     }
     return paypalInstance;

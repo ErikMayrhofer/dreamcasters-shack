@@ -13,6 +13,8 @@
 
   $: items = rawItems;
 
+  $: sum = items.map((it) => +it.price).reduce((p, c) => p + c, 0);
+
   onMount(() => {
     const sub = cart.subscribe(async (value) => {
       console.log("Cart update: ", value);
@@ -59,10 +61,15 @@
       </tr>
     {/if}
   {/each}
+  <tr class="total">
+    <td />
+    <td>Total</td>
+    <td>{sum} €</td>
+  </tr>
 </table>
 <div class:collapsed={items.length == 0} class="paypal">
   <p>Buy {items.length} Artwork Now</p>
-  <Paypal />
+  <Paypal {items} />
 </div>
 
 <style>
@@ -86,6 +93,10 @@
 
   tr {
     height: 50px;
+  }
+  tr.total {
+    font-weight: bold;
+    border-top: 4px double gray;
   }
 
   div.paypal {
